@@ -36,9 +36,6 @@ async createUser(@Body() createUserDto: Signup): Promise<CreateTaskResponse> {
             throw new ConflictException('User already exists with this email');
         }
 
-        if (createUserDto.password !== createUserDto.confrimpassword) {
-            throw new BadRequestException('Password and confirm password do not match');
-        }
 
         const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
 
